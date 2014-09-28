@@ -9,7 +9,11 @@ django-smart-autoregister
 
 **Latest version: 0.0.1 (2014/09)**
 
-Small description.
+**Django-Smart-AutoRegister** (DSA) is a Django tool that automatically configure the ModelAdmin classes of your application using some good patterns:
+
+* The default behavior is to protect your application against reading without intention the entire data table because some foreign key relationship.
+* It search by all pertinent fields.
+* It create filter for all pertinent fields.
 
 Documentation
 -------------
