@@ -1,0 +1,76 @@
+.DS_Store
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+*.log
+*~
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+env/
+envpypy
+env26
+env27
+env32
+env33
+env34
+env2.6
+env2.7
+env3.2
+env3.3
+env3.4
+.tox
+test_:memory:
+virtualenv*
+
+.idea/
+dist/
+build/
+cover/
+.settings
+.project
+.pydevproject
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.core.runtime.prefs
+.settings/org.eclipse.ltk.core.refactoring.prefs
+.settings/org.eclipse.wst.validation.prefs
+*.bat
+*.sh
+*.coverage
+*.pyc
+*.pyo
+*.log
+.noseids
+*.sqlite
+
+*.egg-info
