@@ -1,6 +1,8 @@
 # coding: utf-8
 import unittest
 
+import six
+
 from django.test import TestCase
 from django_dynamic_fixture import G, F, P
 
@@ -173,10 +175,42 @@ class EmptyModelTests(TestCase):
         self.assertEquals(list_per_page, 5)
 
 
-class EmptyModelTests(TestCase):
+class NtoNModelTests(TestCase):
+    def test_list_display_include_id_and_str(self):
+        self.admin_class = auto_configure_admin_for_model(NtoNModel)
+
+        attrs = self.admin_class.__dict__['list_display']
+        self.assertEquals(['id', '__str__', 'small_string'], attrs)
+
+        attrs = self.admin_class.__dict__['list_display_links']
+        self.assertEquals(['id', '__str__', 'small_string'], attrs)
+
+
+class AdditionalTests(TestCase):
     def test_dsa_do_not_override_user_configuration(self):
         admin_class = auto_configure_admin_for_model(EmptyModel, list_filter=['id'], list_display=['x'])
         attrs = admin_class.__dict__['list_filter']
         self.assertEquals(['id'], attrs)
         attrs = admin_class.__dict__['list_display']
         self.assertEquals(['x'], attrs)
+
+    def test_it_is_possible_to_override_register(self):
+        admin_class = auto_configure_admin_for_model(EmptyModel, list_filter=['id'], list_display=['x'])
+        attrs = admin_class.__dict__['list_filter']
+        self.assertEquals(['id'], attrs)
+
+        admin_class = auto_configure_admin_for_model(EmptyModel, override=False)
+        attrs = admin_class.__dict__['list_filter']
+        self.assertEquals(['id'], attrs)
+
+        admin_class = auto_configure_admin_for_model(EmptyModel, override=True)
+        attrs = admin_class.__dict__['list_display']
+        self.assertEquals(['id', '__str__'], attrs)
+
+    def test_admin_class_contain_fk_links(self):
+        admin_class = auto_configure_admin_for_model(NtoNModel)
+        link_url = admin_class.rel1_link(1)
+        self.assertEquals(link_url, '<a href="/admin/django_smart_autoregister/ntonmodel/1/">NtoNModel(1)</a>')
+
+        link_url = admin_class.rel1_link(2)
+        self.assertEquals(link_url, '<a href="/admin/django_smart_autoregister/ntonmodel/2/">NtoNModel(2)</a>')

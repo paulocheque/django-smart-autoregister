@@ -32,6 +32,11 @@ To override the automatically generated config, you can set the ModelAdmin attri
     auto_configure_admin_for_model(User, raw_id_fields=[], search_fields=['email', 'username'])
 
 
+Pay attention you can receive a AlreadyRegistered exception if you are trying to configure a model that has already been registered. If you want to override previous configurations, you can use like this::
+
+    auto_configure_admin_for_model(User, raw_id_fields=[], search_fields=['email', 'username'], override=True)
+
+
 Configure all models
 -------------------------------------------------------------------------------
 

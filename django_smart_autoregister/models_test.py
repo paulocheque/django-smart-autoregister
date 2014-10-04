@@ -48,3 +48,9 @@ class SomeModel(models.Model):
 
     if StrictVersion(django.get_version()) >= StrictVersion('1.6'):
         binary = models.BinaryField()
+
+
+class NtoNModel(models.Model):
+    rel1 = models.ForeignKey(EmptyModel, related_name='rell1')
+    rel2 = models.ForeignKey(EmptyModel, related_name='rell2')
+    small_string = models.CharField(max_length=10)

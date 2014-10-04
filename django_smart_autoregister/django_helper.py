@@ -2,8 +2,11 @@
 """
 Module to wrap dirty stuff of django core.
 """
+from distutils.version import StrictVersion
+
+import django
 from django.db import models
-from django.db.models import Model, ForeignKey, OneToOneField, FileField
+from django.db.models import *
 from django.db.models.fields import NOT_PROVIDED, AutoField, FieldDoesNotExist
 from django.db.models.base import ModelBase
 from django.db.models.query import QuerySet
@@ -202,3 +205,27 @@ def enable_auto_now_add(field):
 def disable_auto_now_add(field):
     if hasattr(field, 'auto_now_add'):
         field.auto_now_add = False
+
+
+
+def is_boolean(field):
+    return isinstance(field, (BooleanField, NullBooleanField))
+
+def is_string(field):
+    return isinstance(field, (CharField, EmailField, IPAddressField, SlugField, URLField))
+
+def is_number(field):
+    return isinstance(field, (IntegerField, SmallIntegerField, PositiveIntegerField,
+        PositiveSmallIntegerField, BigIntegerField, CommaSeparatedIntegerField, DecimalField, FloatField))
+
+def is_datetime(field):
+    return isinstance(field, (DateTimeField, DateField, TimeField))
+
+def is_file(field):
+    return isinstance(field, (FileField, FilePathField))
+
+def is_binary(field):
+    if StrictVersion(django.get_version()) >= StrictVersion('1.6'):
+        return isinstance(field, (BinaryField))
+    else:
+        return False

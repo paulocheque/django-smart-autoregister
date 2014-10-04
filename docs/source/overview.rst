@@ -12,7 +12,11 @@ In some ``admin.py`` file::
     from django_smart_autoregister import auto_configure_admin
     from django.contrib.auth.models import User
 
+    # ignore if User has already been registered
     auto_configure_admin_for_model(User)
+
+    # replace User admin configuration if User model has already been registered
+    auto_configure_admin_for_model(User, override=True)
 
     # or
     auto_configure_admin()
