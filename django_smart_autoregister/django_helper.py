@@ -33,13 +33,21 @@ def get_apps(application_labels=[], exclude_application_labels=[]):
     if application_labels:
         applications = []
         for app_label in application_labels:
-            applications.append(models.get_app(app_label))
+            if django_greater_than('1.7'):
+                app_config = apps.get_app_config(app_label)
+                applications.append(app_config.module)
+            else:
+                applications.append(models.get_app(app_label))
     else:
         applications = models.get_apps()
     if exclude_application_labels:
         for app_label in exclude_application_labels:
             if app_label:
-                applications.remove(models.get_app(app_label))
+                if django_greater_than('1.7'):
+                    app_config = apps.get_app_config(app_label)
+                    applications.remove(app_config.models_module)
+                else:
+                    applications.remove(models.get_app(app_label))
     return applications
 
 
