@@ -9,6 +9,12 @@ Change Log
 
 Date format: yyyy/mm/dd
 
+Version 0.0.3 - 2015/05
+-------------------------------------------------------------------------------
+  * <http://pypi.python.org/pypi/django-smart-autoregister/0.0.3>
+  * [Update] No more deprecated methods
+
+
 Version 0.0.2 - 2015/05
 -------------------------------------------------------------------------------
   * <http://pypi.python.org/pypi/django-smart-autoregister/0.0.2>
