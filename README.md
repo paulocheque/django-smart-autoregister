@@ -8,7 +8,7 @@ django-smart-autoregister
 [![PyPi version](https://pypip.in/v/django-smart-autoregister/badge.png)](https://crate.io/packages/django-smart-autoregister/)
 [![PyPi downloads](https://pypip.in/d/django-smart-autoregister/badge.png)](https://crate.io/packages/django-smart-autoregister/)
 
-**Latest version: 0.0.1 (2014/10/04)**
+**Latest version: 0.0.2 (2015/05)**
 
 **Django-Smart-AutoRegister** (DSA) is a Django tool that automatically configure the ModelAdmin classes of your application using some good patterns:
 

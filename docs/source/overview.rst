@@ -55,7 +55,7 @@ requirements.txt
 
 ::
 
-    django-smart-autoregister==0.0.1
+    django-smart-autoregister==0.0.2
     # or use the development version
     git+git://github.com/paulocheque/django-smart-autoregister.git#egg=django-smart-autoregister
 
