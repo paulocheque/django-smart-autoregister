@@ -21,6 +21,15 @@ def is_suitable_for_search_fields(field):
     return is_string(field)
 
 
+# User settings or DSA default settings
+try:
+    DSA_LIST_PER_PAGE = int(settings.DSA_LIST_PER_PAGE) if hasattr(settings, 'DSA_LIST_PER_PAGE') else 5
+    DSA_LIST_MAX_SHOW_ALL = int(settings.DSA_LIST_MAX_SHOW_ALL) if hasattr(settings, 'DSA_LIST_MAX_SHOW_ALL') else 50
+    DSA_FIELD_STRATEGY = settings.DSA_FIELD_STRATEGY if hasattr(settings, 'DSA_FIELD_STRATEGY') else {}
+    DSA_FULL_STRATEGY = settings.DSA_FULL_STRATEGY if hasattr(settings, 'DSA_FULL_STRATEGY') else {}
+except Exception as e:
+    raise Exception('DSA improperly configured. Please, check your settings.DSA_*: %s' % str(e))
+
 # function(field) => boolean
 FIELD_STRATEGY = {
     'raw_id_fields': is_suitable_for_raw_id_fields,
@@ -28,8 +37,8 @@ FIELD_STRATEGY = {
     'list_display_links': is_suitable_for_list_display_links,
     'list_filter': is_suitable_for_list_filter,
     'search_fields': is_suitable_for_search_fields,
-    'list_per_page': 5,
-    'list_max_show_all': 50
+    'list_per_page': DSA_LIST_PER_PAGE,
+    'list_max_show_all': DSA_LIST_MAX_SHOW_ALL,
 }
 
 
@@ -60,16 +69,14 @@ FULL_STRATEGY = {
     'search_fields': confirm_search_fields,
 }
 
-def get_strategy(default, settings_name):
+def get_strategy(dsa_default_settings, user_custom_settings):
     strategy = {}
-    strategy.update(default)
-    if hasattr(settings, settings_name):
-        # print(getattr(settings, settings_name))
-        strategy.update(getattr(settings, settings_name))
+    strategy.update(dsa_default_settings)
+    strategy.update(user_custom_settings)
     return strategy
 
-STRATEGY = get_strategy(FIELD_STRATEGY, 'DSA_FIELD_STRATEGY')
-FINAL_STRATEGY = get_strategy(FULL_STRATEGY, 'DSA_FULL_STRATEGY')
+STRATEGY = get_strategy(FIELD_STRATEGY, DSA_FIELD_STRATEGY)
+FINAL_STRATEGY = get_strategy(FULL_STRATEGY, DSA_FULL_STRATEGY)
 # print(STRATEGY)
 # print(FINAL_STRATEGY)
 
