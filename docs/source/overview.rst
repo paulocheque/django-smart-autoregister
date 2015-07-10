@@ -71,8 +71,8 @@ Upgrade
 Compatibility
 ===============================================================================
 
-* Tested with Django 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 and PyPy
-* Tested with Python 2.7, 3.3 and 3.4
+* Tested with Django 1.4, 1.5, 1.6, 1.7, 1.8
+* Tested with Python 2.7, 3.3, 3.4 and PyPy
 
 
 Motivation
@@ -84,4 +84,4 @@ It is boring to configure Django admin application for every model. It is a repl
 External references
 ===============================================================================
 
-  *
+  * TODO
