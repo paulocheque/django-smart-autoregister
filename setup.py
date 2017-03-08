@@ -16,20 +16,20 @@ from setuptools import setup, find_packages
 VERSION = '0.0.3'
 
 tests_require = [
-    'nose>=1.3.6',
-    'django-nose>=1.4',
+    'nose==1.3.7',
+    'django-nose==1.4.4',
     'coverage==3.7.1',
-    'django-coverage>=1.2',
-    'tox>=2.0',
-    'flake8>=2.4',
-    'pyflakes',
-    'pylint',
-    'jsonfield',
-    'django_dynamic_fixture',
+    'django-coverage==1.2.4',
+    'tox==2.6.0',
+    'flake8==2.1.0',
+    'pyflakes==1.5.0',
+    'pylint==1.6.5',
+    'jsonfield==2.0.0',
+    'django_dynamic_fixture==1.9.2',
 ]
 
 install_requires = [
-    'six',
+    'six==1.10.0',
     # 'django',
 ]
 
