@@ -4,7 +4,6 @@ import os
 import sys
 from os.path import dirname, abspath
 from optparse import OptionParser
-from distutils.version import StrictVersion
 
 logging.getLogger('smart_autoregister').addHandler(logging.StreamHandler())
 
@@ -16,6 +15,11 @@ from django.conf import settings
 if not settings.configured:
     os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
+print('Django {}'.format(django.VERSION))
+
+if django.VERSION >= (1, 7):
+    django.setup()
+
 from django_nose import NoseTestSuiteRunner
 
 # Django-Nose must import test_models to avoid 'no such table' problem
@@ -23,8 +27,7 @@ from django_dynamic_fixture import models_test
 
 
 def runtests(*test_args, **kwargs):
-    # Slice to avoid StrictVersion errors with versions like 1.8c1
-    if StrictVersion(django.get_version()[0:3]) >= StrictVersion('1.7'):
+    if django.VERSION >= (1, 7):
         django.setup()
 
     kwargs.setdefault('interactive', False)
