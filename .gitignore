@@ -74,3 +74,4 @@ cover/
 *.sqlite
 
 *.egg-info
+.eggs/*
