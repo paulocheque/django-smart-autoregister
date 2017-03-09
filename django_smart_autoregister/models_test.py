@@ -7,7 +7,8 @@ from .django_helper import django_greater_than
 
 
 class EmptyModel(models.Model):
-    pass
+    class Meta:
+        app_label = 'django_smart_autoregister'
 
 class SomeModel(models.Model):
     SAMPLE_CHOICES = (('1', 'One'), ('2', 'Two'), ('3', 'Three'))
@@ -49,8 +50,14 @@ class SomeModel(models.Model):
     if django_greater_than('1.6'):
         binary = models.BinaryField()
 
+    class Meta:
+        app_label = 'django_smart_autoregister'
+
 
 class NtoNModel(models.Model):
     rel1 = models.ForeignKey(EmptyModel, related_name='rell1')
     rel2 = models.ForeignKey(EmptyModel, related_name='rell2')
     small_string = models.CharField(max_length=10)
+
+    class Meta:
+        app_label = 'django_smart_autoregister'
