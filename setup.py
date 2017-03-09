@@ -25,7 +25,7 @@ tests_require = [
     'pyflakes==1.5.0',
     'pylint==1.6.5',
     'jsonfield==2.0.0',
-    'django_dynamic_fixture==1.9.2',
+    'django_dynamic_fixture==1.9.3',
 ]
 
 install_requires = [

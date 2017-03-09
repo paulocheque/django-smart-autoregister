@@ -11,7 +11,7 @@ python-coveralls==2.9.0
 
 flake8==2.1.0
 
-django-dynamic-fixture==1.9.2
+django-dynamic-fixture==1.9.3
 
 # DOCS
 sphinx==1.5.3
