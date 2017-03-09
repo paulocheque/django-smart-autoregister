@@ -9,6 +9,12 @@ Change Log
 
 Date format: yyyy/mm/dd
 
+Version 0.0.4 - 2017/03
+-------------------------------------------------------------------------------
+  * <http://pypi.python.org/pypi/django-smart-autoregister/0.0.4>
+  * [Update] Django 1.10 compatibility issues
+  * [Bugfix] Fixed internal issues for testing/Travis
+
 Version 0.0.3 - 2015/05
 -------------------------------------------------------------------------------
   * <http://pypi.python.org/pypi/django-smart-autoregister/0.0.3>
