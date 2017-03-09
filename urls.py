@@ -3,9 +3,9 @@ from distutils.version import StrictVersion
 import django
 
 if StrictVersion(django.get_version()) >= StrictVersion('1.4'):
-    from django.conf.urls import patterns, include, url
+    from django.conf.urls import include, url
 else:
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls.defaults import include, url
 
 
 from django.contrib import admin
@@ -27,6 +27,6 @@ from django.contrib import admin
 # auto_configure_admin(applications=['your_app1', 'your_app2'])
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-)
+]
