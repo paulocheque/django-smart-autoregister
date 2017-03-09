@@ -212,7 +212,7 @@ class AdditionalTests(TestCase):
         admin_class = auto_configure_admin_for_model(NtoNModel)
         link_url1 = admin_class.rel1_link(1)
         link_url2 = admin_class.rel1_link(2)
-        if django.VERSION >= (1, 10):
+        if django.VERSION >= (1, 9):
             self.assertEquals(link_url1, '<a href="/admin/django_smart_autoregister/ntonmodel/1/change/">NtoNModel(1)</a>')
             self.assertEquals(link_url2, '<a href="/admin/django_smart_autoregister/ntonmodel/2/change/">NtoNModel(2)</a>')
         else:
