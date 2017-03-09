@@ -3,6 +3,7 @@ import unittest
 
 import six
 
+import django
 from django.test import TestCase
 from django_dynamic_fixture import G, F, P
 
@@ -209,8 +210,11 @@ class AdditionalTests(TestCase):
 
     def test_admin_class_contain_fk_links(self):
         admin_class = auto_configure_admin_for_model(NtoNModel)
-        link_url = admin_class.rel1_link(1)
-        self.assertEquals(link_url, '<a href="/admin/django_smart_autoregister/ntonmodel/1/">NtoNModel(1)</a>')
-
-        link_url = admin_class.rel1_link(2)
-        self.assertEquals(link_url, '<a href="/admin/django_smart_autoregister/ntonmodel/2/">NtoNModel(2)</a>')
+        link_url1 = admin_class.rel1_link(1)
+        link_url2 = admin_class.rel1_link(2)
+        if django.VERSION >= (1, 10):
+            self.assertEquals(link_url1, '<a href="/admin/django_smart_autoregister/ntonmodel/1/change/">NtoNModel(1)</a>')
+            self.assertEquals(link_url2, '<a href="/admin/django_smart_autoregister/ntonmodel/2/change/">NtoNModel(2)</a>')
+        else:
+            self.assertEquals(link_url1, '<a href="/admin/django_smart_autoregister/ntonmodel/1/">NtoNModel(1)</a>')
+            self.assertEquals(link_url2, '<a href="/admin/django_smart_autoregister/ntonmodel/2/">NtoNModel(2)</a>')
