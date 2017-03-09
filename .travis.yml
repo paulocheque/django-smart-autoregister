@@ -12,12 +12,12 @@ env:
   - TOXENV=py27-django17
   - TOXENV=py27-django18
   - TOXENV=py27-django19
-  - TOXENV=py33-django17
-  - TOXENV=py33-django18
-  - TOXENV=py33-django19
   - TOXENV=py34-django17
   - TOXENV=py34-django18
   - TOXENV=py34-django19
+  - TOXENV=py36-django17
+  - TOXENV=py36-django18
+  - TOXENV=py36-django19
   - TOXENV=pypy-django17
   - TOXENV=pypy-django18
   - TOXENV=pypy-django19
