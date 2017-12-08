@@ -17,10 +17,6 @@ env:
   - TOXENV=py34-django18
   - TOXENV=py34-django19
   - TOXENV=py34-django110
-  - TOXENV=pypy-django17
-  - TOXENV=pypy-django18
-  - TOXENV=pypy-django19
-  - TOXENV=pypy-django110
 
 after_success:
   - coveralls
