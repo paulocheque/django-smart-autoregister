@@ -2,8 +2,6 @@
 """
 Module to wrap dirty stuff of django core.
 """
-from distutils.version import StrictVersion
-
 import django
 from django.db import models
 from django.db.models import *
@@ -17,11 +15,6 @@ except ImportError:
     pass # Django < 1.7
 
 
-def django_greater_than(version):
-    # Slice to avoid StrictVersion errors with versions like 1.8c1
-    DJANGO_VERSION = django.get_version()[0:3]
-    return StrictVersion(DJANGO_VERSION) >= StrictVersion(version)
-
 # Apps
 def get_apps(application_labels=[], exclude_application_labels=[]):
     """
@@ -33,7 +26,7 @@ def get_apps(application_labels=[], exclude_application_labels=[]):
     if application_labels:
         applications = []
         for app_label in application_labels:
-            if django_greater_than('1.7'):
+            if django.VERSION >= (1, 7):
                 app_config = apps.get_app_config(app_label)
                 applications.append(app_config.module)
             else:
@@ -43,7 +36,7 @@ def get_apps(application_labels=[], exclude_application_labels=[]):
     if exclude_application_labels:
         for app_label in exclude_application_labels:
             if app_label:
-                if django_greater_than('1.7'):
+                if django.VERSION >= (1, 7):
                     app_config = apps.get_app_config(app_label)
                     applications.remove(app_config.models_module)
                 else:
@@ -62,7 +55,7 @@ def get_models_of_an_app(app_module):
     """
     app_module is the object returned by get_apps method (python module)
     """
-    if django_greater_than('1.7'):
+    if django.VERSION >= (1, 7):
         app_name = get_app_name(app_module)
         app_config = apps.get_app_config(app_name)
         return list(app_config.get_models())
@@ -249,7 +242,7 @@ def is_file(field):
     return isinstance(field, (FileField, FilePathField))
 
 def is_binary(field):
-    if django_greater_than('1.6'):
+    if django.VERSION(1, 6):
         return isinstance(field, (BinaryField))
     else:
         return False
