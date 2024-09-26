@@ -3,7 +3,6 @@ import six
 import django
 from django.db import models
 from django.contrib.auth.models import User
-from .django_helper import django_greater_than
 
 
 class EmptyModel(models.Model):
@@ -47,7 +46,7 @@ class SomeModel(models.Model):
     file = models.FileField(upload_to='/tmp')
     filepath = models.FilePathField()
 
-    if django_greater_than('1.6'):
+    if django.VERSION >= (1, 6):
         binary = models.BinaryField()
 
     class Meta:
