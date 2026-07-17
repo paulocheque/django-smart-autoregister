@@ -2,7 +2,7 @@
 """
 Module to wrap dirty stuff of django core.
 """
-from distutils.version import StrictVersion
+from packaging.version import Version as StrictVersion
 
 import django
 from django.db import models
