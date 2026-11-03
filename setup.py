@@ -23,7 +23,7 @@ tests_require = [
     'tox==2.6.0',
     'flake8==2.1.0',
     'pyflakes==1.5.0',
-    'pylint==1.6.5',
+    'pylint==4.0.9',
     'jsonfield==2.0.0',
     'django_dynamic_fixture==1.9.3',
 ]
